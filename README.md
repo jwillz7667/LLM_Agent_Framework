@@ -1,10 +1,6 @@
-Here’s a comprehensive and descriptive `README.md` file for your LLM Agent Framework project. This file includes sections for project overview, installation, usage, contribution guidelines, and more.
-
-```markdown
 # LLM Agent Framework
 
 ## Overview
-
 The LLM Agent Framework is a robust, scalable, and production-ready framework designed to integrate with multiple large language models (LLMs) such as OpenAI GPT-4o, Anthropic Claude Sonnet 3.5, and Meta's LLaMA 3.1. The framework supports various software development tasks like code generation, debugging, code review, and more, leveraging the power of diverse LLMs.
 
 ## Features
@@ -192,5 +188,3 @@ Thank you for using the LLM Agent Framework! We hope it serves as a powerful too
 ### Instructions:
 - Replace `your-username`, `your-openai-api-key`, `your-anthropic-api-key`, `your-llama3-api-key`, and `your-email@example.com` with your actual GitHub username, API keys, and contact information.
 - Add the `requirements.txt` file if it doesn't already exist, listing all the dependencies.
-
-This `README.md` file provides a clear and detailed overview of your project, guiding users through installation, usage, and contribution. If you need any further additions or adjustments, feel free to ask!
