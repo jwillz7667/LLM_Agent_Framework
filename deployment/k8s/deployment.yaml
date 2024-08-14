@@ -1,0 +1,44 @@
+# deployment/k8s/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-agent-framework
+  labels:
+    app: llm-agent-framework
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: llm-agent-framework
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: llm-agent-framework
+    spec:
+      containers:
+      - name: llm-agent-container
+        image: your-docker-image
+        ports:
+        - containerPort: 5000
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: openai
+        - name: ANTHROPIC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: anthropic
+        - name: LLAMA3_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: llama3

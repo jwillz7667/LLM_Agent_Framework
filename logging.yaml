@@ -1,0 +1,44 @@
+# logging.yaml
+version: 1
+disable_existing_loggers: False
+formatters:
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: simple
+    level: DEBUG
+  file:
+    class: logging.FileHandler
+    formatter: simple
+    level: INFO
+    filename: llm_agent_framework.log
+loggers:
+  llm_integration_layer:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+  orchestrator:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+  agents:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+  contextual_knowledge_base:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+  ui:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+  integration:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [console, file]

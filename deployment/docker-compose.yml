@@ -1,0 +1,25 @@
+# deployment/docker-compose.yml
+version: '3.8'
+
+services:
+  llm_agent_framework:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - LLAMA3_API_KEY=${LLAMA3_API_KEY}
+    depends_on:
+      - redis
+    networks:
+      - llm_network
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - llm_network
+
+networks:
+  llm_network:
+    driver: bridge
