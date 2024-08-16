@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Agent Framework</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>LLM Agent Framework</h1>
+    </header>
+    <main>
+        <section id="task-form">
+            <h2>Submit a Task</h2>
+            <form id="taskForm">
+                <label for="task_type">Task Type:</label>
+                <select id="task_type" name="task_type" required>
+                    <option value="code_generation">Code Generation</option>
+                    <option value="debugging">Debugging</option>
+                    <option value="code_review">Code Review</option>
+                    <option value="testing">Testing</option>
+                    <option value="project_management">Project Management</option>
+                </select>
+
+                <label for="input_data">Input Data:</label>
+                <textarea id="input_data" name="input_data" required></textarea>
+
+                <label for="model">Model:</label>
+                <input type="text" id="model" name="model" value="gpt-4o">
+
+                <label for="max_tokens">Max Tokens:</label>
+                <input type="number" id="max_tokens" name="max_tokens" value="100">
+
+                <button type="submit">Submit</button>
+            </form>
+            <div id="loading" style="display:none;">Processing your request...</div>
+        </section>
+        <section id="result">
+            <h2>Result</h2>
+            <pre id="resultText"></pre>
+        </section>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $('#taskForm').submit(function(event) {
+                event.preventDefault();
+                $('#loading').show();
+                $('#resultText').text('');
+
+                $.ajax({
+                    url: '/submit_task',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#loading').hide();
+                        if (response.error) {
+                            $('#resultText').text('Error: ' + response.error);
+                        } else {
+                            $('#resultText').text(response.text);
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#loading').hide();
+                        $('#resultText').text('An error occurred: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 # orchestrator/orchestrator_agent.py
 from typing import Dict
-from llm_integration_layer.request_router import RequestRouter
-from llm_integration_layer.response_aggregator import ResponseAggregator
-from contextual_knowledge_base.context_manager import ContextManager
+from core.request_router import RequestRouter
+from core.response_aggregator import ResponseAggregator
+from knowledge_base.context_manager import ContextManager
 
 class OrchestratorAgent:
     def __init__(self):
